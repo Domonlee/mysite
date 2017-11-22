@@ -2,11 +2,13 @@ import markdown
 
 from django.shortcuts import render, get_object_or_404
 from comments.form import CommentForm
-from .models import Post, Category
+from .models import Post, Category,Typecho_Posts
 
 
 def index(request):
-    post_list = Post.objects.all().order_by('-created_time')
+    # post_list = Post.objects.all().order_by('-created_time')
+    post_list = Typecho_Posts.objects.all().order_by('-created_time')
+
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
@@ -24,20 +26,20 @@ def category(request, pk):
 
 
 def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.body = markdown.markdown(post.body,
+    post = get_object_or_404(Typecho_Posts, pk=pk)
+    post.text = markdown.markdown(post.text,
                                   extensions=[
                                       'markdown.extensions.extra',
                                       'markdown.extensions.codehilite',
                                       'markdown.extensions.toc',
                                   ])
     form = CommentForm()
-    comment_list = post.comment_set.all()
+    # comment_list = post.comment_set.all()
 
     context = {
         'post': post,
-        'form': form,
-        'comment_list': comment_list
+        'form': form
+        # 'comment_list': comment_list
     }
 
     return render(request, 'blog/detail.html', context=context)

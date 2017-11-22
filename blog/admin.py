@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag,Typecho_Posts
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Typecho_Posts)
