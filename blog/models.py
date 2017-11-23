@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
 import time
 
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -44,41 +43,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_time']
-
-
-class Typecho_Post(models.Model):
-    cid = models.IntegerField()
-    title = models.CharField(max_length=255)
-    slug = models.CharField(max_length=255)
-
-    created_time = models.IntegerField()
-    modified_time = models.IntegerField()
-
-    text = models.TextField()
-
-    order_num = models.IntegerField()
-    authorId = models.IntegerField()
-    template = models.IntegerField(blank=True, null=True)
-    type = models.CharField(max_length=255)
-    status = models.CharField(max_length=255)
-    password = models.CharField(max_length=255, blank=True, null=True)
-    commentsNum = models.IntegerField(blank=True)
-    allowComment = models.CharField(max_length=255, blank=True, default='0')
-    allowPing = models.CharField(max_length=255, blank=True)
-    allowFeed = models.CharField(max_length=255, blank=True)
-    parent = models.IntegerField()
-    views = models.IntegerField()
-    orrinid = models.IntegerField(null=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('blog:detail', kwargs={'pk': self.pk})
-
-    class Meta:
-        ordering = ['-created_time']
-
 
 class Typecho_Posts(models.Model):
     title = models.CharField(max_length=255)

@@ -3,10 +3,6 @@ from .models import Post, Category, Tag,Typecho_Posts
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_time', 'modified_time', 'category', 'author']
+    list_display = ['title','commentsNum','views']
 
-
-admin.site.register(Post, PostAdmin)
-admin.site.register(Category)
-admin.site.register(Tag)
-admin.site.register(Typecho_Posts)
+admin.site.register(Typecho_Posts,PostAdmin)
