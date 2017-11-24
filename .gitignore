@@ -22,4 +22,5 @@ mysite/*.pyc
 *.pyc
 *.db
 *.sqlite3
+*.sql
 .idea/
